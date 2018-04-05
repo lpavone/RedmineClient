@@ -23,7 +23,7 @@ public class Props {
    */
   public static final int NET_TRAXION_PROJECT_ID = 2;
 
-  public static final String REDMINE_URL = "https://redmine.worldnettps.com/redmine";
+  public static final String REDMINE_URL = "https://xxxxxxxxxxxxxx/redmine";
 
   /**
    * Development process categoryId
@@ -33,4 +33,6 @@ public class Props {
    * DevTeam id
    */
   public static final int DEV_TEAM_ASSIGNEE_ID = 24;
+
+  public static final int DEV_PROCESS_TRACKER = 18;
 }

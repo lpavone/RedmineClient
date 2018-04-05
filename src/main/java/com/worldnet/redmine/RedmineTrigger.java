@@ -34,8 +34,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class RedmineTrigger {
 
-  private static final int DEV_PROCESS_TRACKER = 18;
-
   public static void main(String[] args) {
     System.out.println(
         "\n ************************************************************************************\n" +
@@ -89,7 +87,7 @@ public class RedmineTrigger {
 
       Optional<Tracker> tracker = manager.getIssueManager()
           .getTrackers()
-          .stream().filter(t -> t.getId().equals(DEV_PROCESS_TRACKER)).findAny();
+          .stream().filter(t -> t.getId().equals(Props.DEV_PROCESS_TRACKER)).findAny();
 
       CustomField customerCustomField = CustomFieldFactory
           .create( 4, "Customer", "n/a");
