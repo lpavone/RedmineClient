@@ -12,7 +12,6 @@
 
 package com.worldnet.redmine.action;
 
-import com.taskadapter.redmineapi.RedmineException;
 import com.taskadapter.redmineapi.bean.CustomField;
 import com.taskadapter.redmineapi.bean.Issue;
 import com.taskadapter.redmineapi.bean.IssueCategory;
@@ -30,7 +29,7 @@ public class IssueCustomFactory{
 
   public static Issue of(String subject, Version version, String description,
       IssueCategory category,
-      Tracker tracker, Integer parentId, CustomField customerCustomField) throws RedmineException{
+      Tracker tracker, Integer parentId, CustomField customerCustomField) {
 
     Issue issue = IssueFactory.create(Props.NET_TRAXION_PROJECT_ID, subject);
     issue.setTargetVersion(version);
@@ -38,6 +37,7 @@ public class IssueCustomFactory{
     issue.setCategory( category);
     issue.setAssigneeId( Props.DEV_TEAM_ASSIGNEE_ID);
     issue.setTracker( tracker);
+    issue.setStatusId( Props.READY_FOR_DEV_STATUS_ID);
     if (parentId != null) {
       issue.setParentId(parentId);
     }
