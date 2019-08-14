@@ -18,32 +18,35 @@ import com.taskadapter.redmineapi.bean.IssueCategory;
 import com.taskadapter.redmineapi.bean.IssueFactory;
 import com.taskadapter.redmineapi.bean.Tracker;
 import com.taskadapter.redmineapi.bean.Version;
-import com.worldnet.redmine.Props;
+
+import java.util.Date;
 
 /**
  * Create new issue.
  *
  * @author Leonardo Pavone - 25/09/17.
  */
-public class IssueCustomFactory{
+public class IssueCustomFactory {
 
-  public static Issue of(String subject, Version version, String description,
-      IssueCategory category,
-      Tracker tracker, Integer parentId, CustomField customerCustomField) {
+    public static Issue of(String subject, Version version, String description,
+        IssueCategory category, Tracker tracker, Integer parentId, CustomField customerCustomField,
+        int projectId, int assigneeId, int reviewerId, int statusId, Date dueDate) {
 
-    Issue issue = IssueFactory.create(Props.NET_TRAXION_PROJECT_ID, subject);
-    issue.setTargetVersion(version);
-    issue.setDescription( description);
-    issue.setCategory( category);
-    issue.setAssigneeId( Props.DEV_TEAM_ASSIGNEE_ID);
-    issue.setTracker( tracker);
-    issue.setStatusId( Props.READY_FOR_DEV_STATUS_ID);
-    if (parentId != null) {
-      issue.setParentId(parentId);
+        Issue issue = IssueFactory.create(projectId, subject);
+        issue.setTargetVersion(version);
+        issue.setDescription(description);
+        issue.setCategory(category);
+        issue.setAssigneeId(assigneeId);
+        issue.setTracker(tracker);
+        issue.setStatusId(statusId);
+        if (parentId != null) {
+            issue.setParentId(parentId);
+        }
+        issue.addCustomField(customerCustomField);
+        issue.addCustomFields();
+        issue.setDueDate(dueDate);
+        return issue;
     }
-    issue.addCustomField(customerCustomField);
-    return issue;
-  }
 
 
 }
