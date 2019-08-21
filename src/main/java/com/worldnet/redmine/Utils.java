@@ -11,9 +11,37 @@
  */
 package com.worldnet.redmine;
 
+import com.taskadapter.redmineapi.bean.Issue;
+
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 /**
  * @author Leonardo Pavone - 14 Aug 2019.
  */
 public class Utils {
+
+    public static void logNewIssueCreated(String subject, Issue issue) {
+        System.out.println(
+            String.format("New issue %s created with subject: %s", issue.getId(), subject));
+    }
+
+    /**
+     * Return a date a week earlier
+     * @param dueDate   production due date
+     * @return  a date a week earlier
+     */
+    public static Date getTestDueDate(Date dueDate){
+        LocalDate localDueDate = Instant.ofEpochMilli(dueDate.getTime())
+            .atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return Date.from(
+            localDueDate.minusWeeks(1)
+            .atStartOfDay()
+            .atZone(ZoneId.systemDefault())
+            .toInstant());
+    }
 
 }

@@ -10,7 +10,7 @@
  * and exclusive property of Worldnet TPS Ltd.
  */
 
-package com.worldnet.redmine.action;
+package com.worldnet.redmine.factory;
 
 import com.taskadapter.redmineapi.bean.CustomField;
 import com.taskadapter.redmineapi.bean.Issue;
@@ -19,6 +19,7 @@ import com.taskadapter.redmineapi.bean.IssueFactory;
 import com.taskadapter.redmineapi.bean.Tracker;
 import com.taskadapter.redmineapi.bean.Version;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -29,8 +30,8 @@ import java.util.Date;
 public class IssueCustomFactory {
 
     public static Issue of(String subject, Version version, String description,
-        IssueCategory category, Tracker tracker, Integer parentId, CustomField customerCustomField,
-        int projectId, int assigneeId, int reviewerId, int statusId, Date dueDate) {
+        IssueCategory category, Tracker tracker, Integer parentId, int projectId, int assigneeId,
+        int statusId, Date dueDate, CustomField... customFields) {
 
         Issue issue = IssueFactory.create(projectId, subject);
         issue.setTargetVersion(version);
@@ -42,8 +43,7 @@ public class IssueCustomFactory {
         if (parentId != null) {
             issue.setParentId(parentId);
         }
-        issue.addCustomField(customerCustomField);
-        issue.addCustomFields();
+        issue.addCustomFields(Arrays.asList(customFields));
         issue.setDueDate(dueDate);
         return issue;
     }

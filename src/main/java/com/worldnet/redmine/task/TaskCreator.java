@@ -11,9 +11,13 @@
  */
 package com.worldnet.redmine.task;
 
+import com.taskadapter.redmineapi.RedmineException;
+
 /**
  * @author Leonardo Pavone - 14 Aug 2019.
  */
-public class TaskCreator {
+public interface TaskCreator {
+
+    void create() throws RedmineException;
 
 }
